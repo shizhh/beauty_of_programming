@@ -28,8 +28,28 @@ public class Contains_String_3_1 {
         return AA.contains(B);
     }
 
+    /**
+     * 不用真实移位，等同于对下标取余
+     * */
+    public static boolean isContains3(String A, String B) {
+        char[] As = A.toCharArray();
+        char[] Bs = B.toCharArray();
+        int lenA = As.length;
+        int lenB = Bs.length;
+        for (int i = 0; i < lenA; i++) {
+            int j = i;
+            int k = 0;
+            while (As[j] == Bs[k]) {
+                j = (j+1) % lenA;
+                k++;
+                if (k == lenB) return true;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
-        boolean b = isContains("AABBCD", "CDAABB");
+        boolean b = isContains3("ABBCD", "CDAB");
         System.out.println(b);
     }
 }
